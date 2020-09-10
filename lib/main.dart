@@ -1,4 +1,5 @@
 import 'package:client_shop/providers/product_provider.dart';
+import 'package:client_shop/screens/notification_screen.dart';
 import 'package:client_shop/screens/product_list.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         initialRoute: ProductListScreen.routeName,
         routes: {
           ProductListScreen.routeName: (context) => ProductListScreen(),
+          NotificationScreen.routeName: (context) => NotificationScreen(),
         },
       ),
     );
