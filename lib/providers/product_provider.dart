@@ -16,6 +16,10 @@ class ProductProvider with ChangeNotifier {
     return _products;
   }
 
+  static Product getProductData({String productId}) {
+    return _products.firstWhere((element) => element.id == productId);
+  }
+
   String get keyword {
     return search;
   }

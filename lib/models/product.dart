@@ -1,5 +1,5 @@
 class Product {
-  String productId;
+  String id;
   String productName;
   bool status;
   bool isHotProduct;
@@ -10,7 +10,7 @@ class Product {
   List<SizePrices> sizePrices;
 
   Product({
-    this.productId,
+    this.id,
     this.productName,
     this.status,
     this.isHotProduct,
@@ -22,7 +22,7 @@ class Product {
   });
 
   Product.fromJson(Map<String, dynamic> json) {
-    productId = json['productId'];
+    id = json['id'];
     productName = json['productName'];
     status = json['status'];
     isHotProduct = json['isHotProduct'];
@@ -40,7 +40,7 @@ class Product {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['productId'] = this.productId;
+    data['id'] = this.id;
     data['productName'] = this.productName;
     data['status'] = this.status;
     data['isHotProduct'] = this.isHotProduct;

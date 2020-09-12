@@ -44,7 +44,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
   }
 
   Future<void> printToken() async {
-    print(await _firebaseMessaging.getToken());
+    String token = await _firebaseMessaging.getToken();
+    print("token is: $token");
   }
 
   @override

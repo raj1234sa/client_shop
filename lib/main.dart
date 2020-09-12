@@ -4,6 +4,8 @@ import 'package:client_shop/screens/product_list.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'screens/notification_screen.dart';
+import 'screens/product_list.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +24,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Abhi Shop',
         theme: ThemeData(
           primarySwatch: Colors.blue,
