@@ -4,7 +4,6 @@ import 'package:client_shop/models/product.dart';
 import 'package:client_shop/providers/product_provider.dart';
 import 'package:client_shop/screens/product_detail_screen.dart';
 import 'package:client_shop/widgets/product_item.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -52,15 +51,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
   Widget build(BuildContext context) {
     final productProvider = Provider.of<ProductProvider>(context);
     final List<Product> products = productProvider.products;
-    final CollectionReference _usersCollection =
-        FirebaseFirestore.instance.collection('users');
-    _firebaseMessaging.getToken().then((value) {
-      _usersCollection.doc('CNxRAuPnih6Q1wjFCiz3').set(
-        {
-          'fcm': value,
-        },
-      );
-    });
+    _firebaseMessaging.onTokenRefresh;
 
     return Scaffold(
       appBar: AppBar(

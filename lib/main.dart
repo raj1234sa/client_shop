@@ -1,6 +1,9 @@
 import 'package:client_shop/providers/product_provider.dart';
+import 'package:client_shop/screens/authentication_screen.dart';
+import 'package:client_shop/screens/login_screen.dart';
 import 'package:client_shop/screens/notification_screen.dart';
 import 'package:client_shop/screens/product_list.dart';
+import 'package:client_shop/screens/signup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,10 +32,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        initialRoute: ProductListScreen.routeName,
+        initialRoute: AuthenticationScreen.ROUTE_NAME,
         routes: {
-          ProductListScreen.routeName: (context) => ProductListScreen(),
-          NotificationScreen.routeName: (context) => NotificationScreen(),
+          LoginScreen.ROUTE_NAME:(ctx)=>LoginScreen(),
+          SignUpScreen.ROUTE_NAME:(ctx)=>SignUpScreen(),
+          AuthenticationScreen.ROUTE_NAME:(ctx)=>AuthenticationScreen(),
+          ProductListScreen.routeName: (ctx) => ProductListScreen(),
+          NotificationScreen.routeName: (ctx) => NotificationScreen(),
         },
       ),
     );
