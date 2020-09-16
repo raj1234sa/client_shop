@@ -82,6 +82,7 @@ class AuthService {
   }
 
   static Future<bool> signOut() async {
+    _auth.signOut();
     return await SharedPref.remove('loggedInUser');
   }
 }

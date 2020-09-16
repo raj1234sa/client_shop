@@ -4,7 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 class NotificationScreen extends StatefulWidget {
-  static final routeName = 'notification_screen';
+  static final ROUTE_NAME = 'notification_screen';
   @override
   _NotificationScreenState createState() => _NotificationScreenState();
 }

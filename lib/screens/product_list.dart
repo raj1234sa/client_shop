@@ -2,14 +2,16 @@ import 'dart:io';
 
 import 'package:client_shop/models/product.dart';
 import 'package:client_shop/providers/product_provider.dart';
+import 'package:client_shop/screens/login_screen.dart';
 import 'package:client_shop/screens/product_detail_screen.dart';
+import 'package:client_shop/services/auth_service.dart';
 import 'package:client_shop/widgets/product_item.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProductListScreen extends StatefulWidget {
-  static final routeName = 'product_list_screen';
+  static final ROUTE_NAME = 'product_list_screen';
 
   @override
   _ProductListScreenState createState() => _ProductListScreenState();
@@ -21,41 +23,60 @@ class _ProductListScreenState extends State<ProductListScreen> {
   }
 
   final _searchController = TextEditingController();
-  final _firebaseMessaging = FirebaseMessaging();
+  // final _firebaseMessaging = FirebaseMessaging();
 
   @override
   void initState() {
-    if (Platform.isIOS) {
-      _firebaseMessaging.requestNotificationPermissions();
-    }
-    _firebaseMessaging.configure(
-      onResume: (message) async {
-        String prodId = message['data']['product'];
-        await ProductProvider.initProducts();
-        Product product = ProductProvider.getProductData(productId: prodId);
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ProductDetailScreen(
-              product: product,
-              fromNotification: true,
-            ),
-          ),
-        );
-      },
-    );
+    // if (Platform.isIOS) {
+    //   _firebaseMessaging.requestNotificationPermissions();
+    // }
+    // setToken();
+    // _firebaseMessaging.configure(
+    //   onResume: (message) async {
+    //     String prodId = message['data']['product'];
+    //     await ProductProvider.initProducts();
+    //     Product product = ProductProvider.getProductData(productId: prodId);
+    //     Navigator.push(
+    //       context,
+    //       MaterialPageRoute(
+    //         builder: (context) => ProductDetailScreen(
+    //           product: product,
+    //           fromNotification: true,
+    //         ),
+    //       ),
+    //     );
+    //   },
+    // );
     super.initState();
   }
+
+  // void setToken() async {
+  //   String token = await _firebaseMessaging.getToken();
+  //   print('Token is : $token');
+  // }
 
   @override
   Widget build(BuildContext context) {
     final productProvider = Provider.of<ProductProvider>(context);
     final List<Product> products = productProvider.products;
-    _firebaseMessaging.onTokenRefresh;
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Products'),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.exit_to_app,
+            ),
+            onPressed: () {
+              AuthService.signOut().then((value) {
+                if(value) {
+                  Navigator.pushReplacementNamed(context, LoginScreen.ROUTE_NAME);
+                }
+              });
+            },
+          ),
+        ],
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),

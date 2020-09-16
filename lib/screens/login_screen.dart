@@ -46,6 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
           _passwordController.text,
         );
         if (result is bool && result) {
+          Navigator.pushReplacementNamed(context, ProductListScreen.ROUTE_NAME);
         } else if (result is String) {
           showErrorDialog(
             context: context,

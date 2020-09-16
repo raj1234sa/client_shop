@@ -1,6 +1,8 @@
 import 'package:client_shop/models/product.dart';
+import 'package:client_shop/providers/product_provider.dart';
 import 'package:client_shop/screens/product_detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductItem extends StatelessWidget {
   final Product product;
@@ -10,13 +12,16 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
+      onTap: () async {
+        await Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => ProductDetailScreen(product: product),
           ),
         );
+        ProductProvider productProvider =
+            Provider.of<ProductProvider>(context, listen: false);
+        productProvider.resetSelectedIndexes(product: product);
       },
       child: Card(
         elevation: 4,

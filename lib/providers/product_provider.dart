@@ -6,6 +6,8 @@ import 'package:client_shop/models/product.dart';
 class ProductProvider with ChangeNotifier {
   static List<Product> _products = [];
   String search = '';
+  SizePrices selectedSize;
+  int selectedIndex = 0;
 
   List<Product> get products {
     if (search.isNotEmpty) {
@@ -16,12 +18,32 @@ class ProductProvider with ChangeNotifier {
     return _products;
   }
 
-  static Product getProductData({String productId}) {
-    return _products.firstWhere((element) => element.id == productId);
+  Product getProductData({String productId}) {
+    Product prod = _products.firstWhere((element) => element.id == productId);
+    return prod;
   }
 
   String get keyword {
     return search;
+  }
+
+  void setSelectedSizeIndex({Product product, int index}) {
+    selectedIndex = index;
+    selectedSize = product.sizePrices[index];
+    notifyListeners();
+  }
+
+  void resetSelectedIndexes({Product product}) {
+    selectedIndex = 0;
+    selectedSize = product.sizePrices[0];
+  }
+
+  int get selectedSizeIndex {
+    return selectedIndex;
+  }
+
+  SizePrices get selectedSizePrice {
+    return selectedSize;
   }
 
   static Future<void> initProducts() async {

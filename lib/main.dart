@@ -32,13 +32,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        initialRoute: AuthenticationScreen.ROUTE_NAME,
+        initialRoute: ProductListScreen.ROUTE_NAME,
         routes: {
           LoginScreen.ROUTE_NAME:(ctx)=>LoginScreen(),
           SignUpScreen.ROUTE_NAME:(ctx)=>SignUpScreen(),
           AuthenticationScreen.ROUTE_NAME:(ctx)=>AuthenticationScreen(),
-          ProductListScreen.routeName: (ctx) => ProductListScreen(),
-          NotificationScreen.routeName: (ctx) => NotificationScreen(),
+          ProductListScreen.ROUTE_NAME: (ctx) => ProductListScreen(),
+          NotificationScreen.ROUTE_NAME: (ctx) => NotificationScreen(),
         },
       ),
     );
